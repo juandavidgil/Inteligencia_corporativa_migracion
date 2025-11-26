@@ -114,5 +114,3 @@ def dashboard_page():
 
 
 
-app = rx.App()
-app.add_page(dashboard_page, route="/dashboard")

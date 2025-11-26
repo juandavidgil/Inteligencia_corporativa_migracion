@@ -49,7 +49,7 @@ class TablerosState(rx.State):
             self.loading = False
 
 
-def Tableros():
+def tableros_page():
     """Equivalente a tu componente React."""
     return rx.container(
         rx.vstack(
