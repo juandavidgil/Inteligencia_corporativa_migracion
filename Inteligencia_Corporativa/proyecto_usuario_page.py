@@ -25,8 +25,9 @@ class ProyectosState(rx.State):
 
     async def on_load(self):
         try:
-            self.usuario = json.loads(rx.get_local_storage("usuario") or "{}")
-           
+            #self.usuario = json.loads(rx.get_local_storage("usuario") or "{}")
+            self.usuario["id"] = 1
+
 
             if not self.usuario:
                 self.loading = False
@@ -44,8 +45,9 @@ class ProyectosState(rx.State):
             self.loading = False
 
     async def fetch_proyectos(self):
-        url = f"http://127.0.0.1:8000/api/proyectos_usuario/{self.usuario.get('id')}/"
-        print(url)
+        #url = f"http://127.0.0.1:8000/api/proyectos_usuario/{self.usuario.get('id')}/"
+        url = f"http://127.0.0.1:8000/api/proyectos_usuario/1/"
+       
         try:
             response = await rx.get(url)
             if response.status_code == 200:
@@ -94,6 +96,15 @@ def proyecto_usuario_page():
             rx.center(rx.text("Cargando tus módulos...", font_size="24px", color="white")),
             rx.box(
                 rx.heading("MÓDULOS", color="white", font_size="32px"),
+
+
+                rx.text(
+                    f"Usuario ID: {ProyectosState.usuario.get('id')}",
+                    color="gray",
+                    font_size="16px",
+                    margin_bottom="10px"
+                ),
+
                 rx.text("Aquí puedes ver los módulos en los que estás participando.", font_size="18px", color="white"),
                 rx.cond(
                     ProyectosState.proyectos.length() > 0,  # ✅ CORREGIDO

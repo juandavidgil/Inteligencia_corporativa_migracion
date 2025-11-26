@@ -67,8 +67,8 @@ class UsuarioState(rx.State):
         except Exception:
             pass
 
-    def Administrar(self, **kwargs):
-        return rx.redirect("http://127.0.0.1:8000/admin/")
+    #def Administrar(self, **kwargs):
+     #   return rx.redirect("http://127.0.0.1:8000/admin/")
 
     def cerrar_sesion(self, **kwargs):
         self.correo = ""
@@ -113,12 +113,12 @@ def login_page() -> rx.Component:
                             loading=UsuarioState.cargando,
                             width="100%",
                         ),
-                        rx.button(
-                            "Administrar",
-                            on_click=UsuarioState.Administrar,
-                            width="100%",
-                            variant="outline",
-                        ),
+                        #rx.button(
+                         #   "Administrar",
+                          #  on_click=UsuarioState.Administrar,
+                           # width="100%",
+                           # variant="outline",
+                        #),
                         width="100%",
                     ),
                     rx.text(UsuarioState.mensaje, color="red"),
